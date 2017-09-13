@@ -71,8 +71,8 @@ controller.hears(['.*'], ['direct_message', 'direct_mention', 'mention', 'ambien
                 let botId = '<@' + bot.identity.id + '>';
                 let userId = message.user;
 
-                console.log(requestText);
-                console.log(messageType);
+                console.log('requestText >>>', requestText);
+                console.log('messageType >>>', messageType);
 
                 if (requestText.indexOf(botId) > -1) {
                     requestText = requestText.replace(botId, '');
@@ -82,7 +82,7 @@ controller.hears(['.*'], ['direct_message', 'direct_mention', 'mention', 'ambien
                     sessionIds.set(channel, uuid.v1());
                 }
 
-                console.log('Start request ', requestText);
+                console.log('Start request >>>', requestText);
                 let request = apiAiService.textRequest(requestText,
                     {
                         sessionId: sessionIds.get(channel),
@@ -98,7 +98,7 @@ controller.hears(['.*'], ['direct_message', 'direct_mention', 'mention', 'ambien
                     });
 
                 request.on('response', (response) => {
-                    console.log(response);
+                    console.log('response >>>', response);
 
                     if (isDefined(response.result)) {
                         let responseText = response.result.fulfillment.speech;
